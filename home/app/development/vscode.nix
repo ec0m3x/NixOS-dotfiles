@@ -15,6 +15,7 @@
       "window.menuBarVisibility" = "toggle";
       "window.density.editorTabHeight" = "compact";
       "git.enableSmartCommit" = true;
+      "git.confirmSync" = false;
     };
   };
 
