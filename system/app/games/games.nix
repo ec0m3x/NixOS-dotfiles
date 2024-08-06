@@ -7,7 +7,9 @@
     allowUnfreePredicate = (_: true);
   };
 
-  programs.steam.enable = true;
-
+  programs = {
+    steam.enable = true;
+    gamemode.enable = true;
+  };
 }
 

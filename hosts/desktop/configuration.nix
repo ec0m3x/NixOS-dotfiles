@@ -10,8 +10,10 @@
       ./hardware-configuration.nix
       ../../system/hardware/bluetooth.nix
       ../../system/hardware/zram.nix
+      ../../system/hardware/xbox-controller.nix
       ../../system/wm/hyprland.nix
       ../../system/app/games/games.nix
+      ../../system/app/virtualisation/virtualisation.nix
       ../../system/security/gpg.nix
       ../../system/security/pam.nix
       ../../system/style/style.nix
@@ -56,7 +58,7 @@
   users.users.ecomex = {
     isNormalUser = true;
     description = "ecomex";
-    extraGroups = [ "networkmanager" "wheel" "input" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "dialout" "libvirtd" "kvm" "gamemode"];
     packages = with pkgs; [];
   };
 
