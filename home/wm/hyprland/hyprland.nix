@@ -31,6 +31,7 @@
       exec-once = waybar
       exec-once = hypridle
       exec-once = hyprpaper
+      exec-once = dunst
 
       bezier = wind, 0.05, 0.9, 0.1, 1.05
       bezier = winIn, 0.1, 1.1, 0.1, 1.0
@@ -137,6 +138,25 @@
        bind=SUPERSHIFT,8,movetoworkspace,8
        bind=SUPERSHIFT,9,movetoworkspace,9
 
+       ### Hotkeys ###
+
+       bind=,XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10
+       bind=,XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10
+       bind=,XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t
+       bind=,XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t
+
+       # Brightness control
+       #bind=,XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl s 1%-
+       #bind=,XF86MonBrightnessUP,exec,${pkgs.brightnessctl}/bin/brightnessctl s 1%+
+
+      # Media control
+      # Media control
+       bindl  = , XF86AudioPlay, exec, playerctl play-pause # toggle between media play and pause
+       bindl  = , XF86AudioPause, exec, playerctl play-pause # toggle between media play and pause
+       bindl  = , XF86AudioNext, exec, playerctl next # media next
+       bindl  = , XF86AudioPrev, exec, playerctl previous # media previous
+
+
        #bind=SUPER,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop
        #bind=SUPER,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop
        #bind=SUPER,N,exec,pypr toggle numbat && hyprctl dispatch bringactivetotop
@@ -160,10 +180,10 @@
        #windowrulev2 = size 85% 90%,class:^(lollypop)$
        #windowrulev2 = center,class:^(lollypop)$
 
-       $savetodisk = title:^(Save to Disk)$
-       windowrulev2 = float,$savetodisk
-       windowrulev2 = size 70% 75%,$savetodisk
-       windowrulev2 = center,$savetodisk
+       #$savetodisk = title:^(Save to Disk)$
+       #windowrulev2 = float,$savetodisk
+       #windowrulev2 = size 70% 75%,$savetodisk
+       #windowrulev2 = center,$savetodisk
 
        $pavucontrol = class:^(pavucontrol)$
        windowrulev2 = float,$pavucontrol
@@ -172,11 +192,11 @@
        #windowrulev2 = workspace special silent,$pavucontrol
        windowrulev2 = opacity 0.80,$pavucontrol
 
-       $miniframe = title:\*Minibuf.*
-       windowrulev2 = float,$miniframe
-       windowrulev2 = size 64% 50%,$miniframe
-       windowrulev2 = move 18% 25%,$miniframe
-       windowrulev2 = animation popin 1 20,$miniframe
+       #$miniframe = title:\*Minibuf.*
+       #windowrulev2 = float,$miniframe
+       #windowrulev2 = size 64% 50%,$miniframe
+       #windowrulev2 = move 18% 25%,$miniframe
+       #windowrulev2 = animation popin 1 20,$miniframe
 
        #windowrulev2 = float,class:^(pokefinder)$
 
@@ -282,6 +302,7 @@
     hyprpaper
     hyprlock
     fnott
+    dunst
     keepmenu
     pinentry-gnome3
     wev
@@ -521,7 +542,7 @@
             "car" = "";
             "default" = [ "" "" "" ];
           };
-          "on-click" = "hyprctl dispatch bringactivetotop";
+          "on-click" = "pavucontrol && hyprctl dispatch bringactivetotop";
         };
         "pulseaudio#text" = {
           "scroll-step" = 1;
@@ -531,7 +552,7 @@
           "format-muted" = "";
           "format-source" = "{volume}%";
           "format-source-muted" = "";
-          "on-click" = "hyprctl dispatch bringactivetotop";
+          "on-click" = "pavucontrol && hyprctl dispatch bringactivetotop";
         };
         "group/pulseaudio" = {
           "orientation" = "horizontal";
@@ -797,5 +818,10 @@
       }
     ];
     };
+  };
+
+  services.dunst = {
+    enable = true;
+    catppuccin.enable = true;
   };
 }

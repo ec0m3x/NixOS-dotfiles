@@ -21,7 +21,6 @@
     # Core
     zsh
     firefox
-    brave
     git
 
     # Office
