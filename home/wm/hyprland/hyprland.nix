@@ -336,7 +336,7 @@
 
         modules-left = [ "group/power" "group/cpu" "group/memory" "group/pulseaudio" ];
         modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "group/time" "keyboard-state" "idle_inhibitor" "tray" ];
+        modules-right = [ "tray" "group/time" "keyboard-state" "idle_inhibitor" ];
 
         "custom/os" = {
           "format" = " {} ";
