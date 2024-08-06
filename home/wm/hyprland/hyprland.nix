@@ -151,10 +151,10 @@
 
       # Media control
       # Media control
-       bindl  = , XF86AudioPlay, exec, playerctl play-pause # toggle between media play and pause
-       bindl  = , XF86AudioPause, exec, playerctl play-pause # toggle between media play and pause
-       bindl  = , XF86AudioNext, exec, playerctl next # media next
-       bindl  = , XF86AudioPrev, exec, playerctl previous # media previous
+       bind=,XF86AudioPlay,exec,playerctl play-pause # toggle between media play and pause
+       bind=,XF86AudioPause,exec,playerctl play-pause # toggle between media play and pause
+       bind=,XF86AudioNext,exec,playerctl next # media next
+       bind=,XF86AudioPrev,exec,playerctl previous # media previous
 
 
        #bind=SUPER,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop
@@ -303,6 +303,7 @@
     hyprlock
     fnott
     dunst
+    playerctl
     keepmenu
     pinentry-gnome3
     wev
@@ -824,4 +825,6 @@
     enable = true;
     catppuccin.enable = true;
   };
+
+  services.playerctld.enable = true;
 }
