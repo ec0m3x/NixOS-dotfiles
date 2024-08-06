@@ -8,6 +8,7 @@
       ../../home/shell/cli-collection.nix
       ../../home/style/style.nix
       ../../home/app/git/git.nix
+      ../../home/app/cloud/nextcloud-client.nix
     ];
 
   # Home Manager needs a bit of information about you and the paths it should

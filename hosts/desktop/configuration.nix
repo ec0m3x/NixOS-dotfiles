@@ -16,6 +16,7 @@
       ../../system/app/virtualisation/virtualisation.nix
       ../../system/security/gpg.nix
       ../../system/security/pam.nix
+      ../../system/security/automount.nix
       ../../system/style/style.nix
     ];
 

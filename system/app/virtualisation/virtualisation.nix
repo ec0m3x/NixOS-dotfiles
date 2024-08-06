@@ -12,5 +12,9 @@
     ];
     enable = true;
     qemu.runAsRoot = false;
+    qemu.ovmf.enable = true ;
+    qemu.swtpm = {
+      enable = true;
+    };
   };
 }
