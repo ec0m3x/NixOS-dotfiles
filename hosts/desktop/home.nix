@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -8,6 +8,7 @@
       ../../home/shell/cli-collection.nix
       ../../home/style/style.nix
       ../../home/app/git/git.nix
+      ../../home/app/development/vscode.nix
       ../../home/app/cloud/nextcloud-client.nix
     ];
 
@@ -18,40 +19,40 @@
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = with pkgs; [
+  home.packages = [
     # Core
-    zsh
-    firefox
-    git
+    pkgs.zsh
+    pkgs.firefox
+    pkgs.git
 
     # Office
-    libreoffice-fresh
+    pkgs.libreoffice-fresh
     
     # Gnome stuff
-    gnome.adwaita-icon-theme
-    gnome.nautilus
-    gnome.seahorse
-    gnome.gnome-maps
+    pkgs.gnome.adwaita-icon-theme
+    pkgs.gnome.nautilus
+    pkgs.gnome.seahorse
+    pkgs.gnome.gnome-maps
 
     # Media
-    vlc
-    gimp
-    mpv
-    yt-dlp
-    obs-studio
-    ffmpeg
-    movit
-    mediainfo
-    libmediainfo
-    gnome.cheese
-    spotify
+    pkgs.vlc
+    pkgs.gimp
+    pkgs.mpv
+    pkgs.yt-dlp
+    pkgs.obs-studio
+    pkgs.ffmpeg
+    pkgs.movit
+    pkgs.mediainfo
+    pkgs.libmediainfo
+    pkgs.gnome.cheese
+    pkgs.spotify
 
     # Communication
-    webcord
+    pkgs-unstable.webcord
+    pkgs-unstable.betterdiscord-installer
+    pkgs-unstable.geary
   ];
 
-  home.file = {
-  };
 
   home.sessionVariables = {
     EDITOR = "vscode";
