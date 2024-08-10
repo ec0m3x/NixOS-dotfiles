@@ -51,15 +51,19 @@
       }
 
       general {
-        layout = master
+        layout = dwindle
         border_size = 2
-        #resize_on_border = true
+        resize_on_border = false
         gaps_in = 7
         gaps_out = 7
         # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
         col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
         col.inactive_border = rgba(595959aa)
        }
+      dwindle {
+          pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+          preserve_split = true # You probably want this
+      }
 
       cursor {
         no_warps = false
@@ -137,6 +141,17 @@
        bind=SUPERSHIFT,8,movetoworkspace,8
        bind=SUPERSHIFT,9,movetoworkspace,9
 
+       bind = SUPER, X, togglesplit, # dwindle
+       bind = SUPER, O, pseudo
+
+       # Example special workspace (scratchpad)
+       bind = SUPER, S, togglespecialworkspace, magic
+       bind = SUPER SHIFT, S, movetoworkspace, special:magic
+
+       # Scroll through existing workspaces with mainMod + scroll
+       bind = SUPER, mouse_down, workspace, e+1
+       bind = SUPER, mouse_up, workspace, e-1
+
        ### Hotkeys ###
 
        bind=,XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10
@@ -148,7 +163,6 @@
        #bind=,XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl s 1%-
        #bind=,XF86MonBrightnessUP,exec,${pkgs.brightnessctl}/bin/brightnessctl s 1%+
 
-      # Media control
       # Media control
        bind=,XF86AudioPlay,exec,playerctl play-pause # toggle between media play and pause
        bind=,XF86AudioPause,exec,playerctl play-pause # toggle between media play and pause
@@ -206,6 +220,7 @@
        #windowrulev2 = opacity 0.85,class:^(lollypop)$
        windowrulev2 = opacity 1.0,class:^(Brave-browser),fullscreen:1
        windowrulev2 = opacity 1.0,class:^(librewolf),fullscreen:1
+       windowrulev2 = opacity 1.0,class:^(firefox),fullscreen:1
        #windowrulev2 = opacity 0.85,title:^(My Local Dashboard Awesome Homepage - qutebrowser)$
        #windowrulev2 = opacity 0.85,title:\[.*\] - My Local Dashboard Awesome Homepage
        #windowrulev2 = opacity 0.85,class:^(org.keepassxc.KeePassXC)$
