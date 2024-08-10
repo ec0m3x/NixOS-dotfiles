@@ -26,6 +26,6 @@
     enable = true;
     package = pkgs.kdePackages.sddm;
     wayland.enable = true;
-    enableHidpi = true;
+    enableHidpi = false;
   };
 }

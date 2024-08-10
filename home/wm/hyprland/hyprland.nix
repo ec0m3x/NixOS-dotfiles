@@ -83,7 +83,7 @@
        bind=CTRLALT,Delete,exec,hyprctl kill
        bind=SUPERSHIFT,K,exec,hyprctl kill
 
-       bind=SUPER,RETURN,exec,kitty
+       bind=SUPER,RETURN,exec,alacritty
        bind=SUPER,A,exec,wofi --show drun
        bind=SUPER,Q,killactive
        bind=SUPERSHIFT,Q,exit
@@ -334,6 +334,7 @@
     pamixer
     wofi
     networkmanagerapplet
+    transmission-gtk
     ];
   
   home.file.".config/hypr/hypridle.conf".text = ''
