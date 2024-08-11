@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -103,7 +103,7 @@
        bind=SUPERCTRL,P,exec,grim - | wl-copy
 
 
-       bind=SUPERSHIFT,S,exec,systemctl suspend
+       bind=SUPERCTRL,S,exec,ystemctl suspend
        bind=SUPERCTRL,L,exec,hyprlock
 
        bind=SUPER,H,movefocus,l
@@ -145,8 +145,8 @@
        bind = SUPER, O, pseudo
 
        # Example special workspace (scratchpad)
-       bind = SUPER, S, togglespecialworkspace, magic
-       bind = SUPER SHIFT, S, movetoworkspace, special:magic
+       #bind = SUPER, S, togglespecialworkspace, magic
+       #bind = SUPERSHIFT, S, movetoworkspace, special:magic
 
        # Scroll through existing workspaces with mainMod + scroll
        bind = SUPER, mouse_down, workspace, e+1
@@ -297,26 +297,21 @@
   };
 
   home.packages = with pkgs; [
-    alacritty
-    kitty
     feh
-    killall
     polkit_gnome
     nwg-launchers
     papirus-icon-theme
     gsettings-desktop-schemas
-    gnome.zenity
     wlr-randr
     wtype
     ydotool
     wl-clipboard
     hyprland-protocols
     hyprpicker
-    hypridle
     hyprpaper
+    hypridle
     hyprlock
     fnott
-    dunst
     playerctl
     keepmenu
     pinentry-gnome3
@@ -327,7 +322,6 @@
     qt6.qtwayland
     xdg-utils
     xdg-desktop-portal
-    xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     wlsunset
     pavucontrol
@@ -340,20 +334,20 @@
   home.file.".config/hypr/hypridle.conf".text = ''
     general {
       lock_cmd = pgrep hyprlock || hyprlock
-      before_sleep_cmd = loginctl lock-session
+      before_sleep_cmd = hyprlock  ## loginctl lock-session
       ignore_dbus_inhibit = false
     }
-    #listener {
-    #  timeout = 150 # in seconds
-    #  on-timeout = hyprctl dispatch dpms off
-    #  on-resume = hyprctl dispatch dpms on
+    listener {
+      timeout = 180 # in seconds
+      on-timeout = hyprctl dispatch dpms off
+      on-resume = hyprctl dispatch dpms on
     }
     listener {
       timeout = 160 # in seconds
-      on-timeout = loginctl lock-session
+      on-timeout = hyprlock ##loginctl lock-session
     }
     listener {
-      timeout = 5400 # in seconds
+      timeout = 900 # in seconds
       on-timeout = systemctl suspend
       on-resume = hyprctl dispatch dpms on
     }
@@ -878,6 +872,7 @@
 
   services.dunst = {
     enable = true;
+    package = pkgs-unstable.dunst;
     catppuccin.enable = true;
   };
 

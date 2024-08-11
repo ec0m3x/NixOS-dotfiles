@@ -8,6 +8,7 @@
 
     services.nextcloud-client = {
       enable = true;
+      startInBackground =  true;
       package = pkgs-unstable.nextcloud-client;
     };
   }
