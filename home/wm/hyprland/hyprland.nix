@@ -4,6 +4,7 @@
   imports = [
     ../../app/terminal/kitty.nix
     ../../app/terminal/alacritty.nix
+    ../../app/browser/brave.nix
   ];
 
   wayland.windowManager.hyprland = {
