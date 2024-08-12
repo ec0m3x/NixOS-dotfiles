@@ -8,12 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../system/hardware/bluetooth.nix
-      ../../system/hardware/zram.nix
-      ../../system/hardware/xbox-controller.nix
+      #../../system/hardware/bluetooth.nix
+      #../../system/hardware/zram.nix
+      #../../system/hardware/xbox-controller.nix
       ../../system/wm/hyprland.nix
-      ../../system/app/games/games.nix
-      ../../system/app/virtualisation/virtualisation.nix
+      #../../system/app/games/games.nix
+      #../../system/app/virtualisation/virtualisation.nix
       ../../system/security/gpg.nix
       ../../system/security/pam.nix
       #../../system/security/automount.nix
