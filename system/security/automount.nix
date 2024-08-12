@@ -6,7 +6,6 @@
   services.udisks2.enable = true;
   programs.gnome-disks.enable = true;
 
-  # Enable the systemd automount service
 
   boot.supportedFilesystems = [ "cifs" ];
 
@@ -23,4 +22,10 @@
     where = "/home/ecomex/ecomex-storage";
     wantedBy = [ "multi-user.target" ];
   }];
+  
+  fileSystems."/home/ecomex/Devices/250-GB-SSD" = {
+    device = "/dev/disk/by-uuid/91b1ecb5-bae3-4f64-b4f0-094a06624c81";
+    fsType = "auto";
+    options = [ "noatime" "nosuid" "nodev" "nofail" "x-gvfs-show"]; # Optional, similar to mount options in fstab
+  };
 }

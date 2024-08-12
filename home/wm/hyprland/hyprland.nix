@@ -104,7 +104,7 @@
        bind=SUPERCTRL,P,exec,grim - | wl-copy
 
 
-       bind=SUPERCTRL,S,exec,ystemctl suspend
+       bind=SUPERCTRL,S,exec,systemctl suspend
        bind=SUPERCTRL,L,exec,hyprlock
 
        bind=SUPER,H,movefocus,l
@@ -249,7 +249,7 @@
        #bind=SUPERSHIFT,P,exec,hyprprofile-dmenu
 
        # monitor setup
-       monitor=HDMI-A-1,3440x1440@100,auto,auto
+       monitor=HDMI-A-1,3440x1440@100,0x0,1
 
        # hdmi tv
        #monitor=eDP-1,1920x1080,1920x0,1

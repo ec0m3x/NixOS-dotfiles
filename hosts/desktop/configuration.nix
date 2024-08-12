@@ -18,7 +18,7 @@
       ../../system/security/pam.nix
       ../../system/security/automount.nix
       ../../system/security/tailscale.nix
-      ../../system/style/style.nix
+      ../../system/style/stylix.nix
     ];
 
   # Bootloader.

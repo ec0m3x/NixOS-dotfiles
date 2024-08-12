@@ -25,25 +25,25 @@
       };
   };
 
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "blue";
+  #catppuccin = {
+  #  enable = true;
+  #  flavor = "mocha";
+  #  accent = "blue";
     #pointerCursor = {
     #  enable = true;
     #  accent = "dark";
     #  flavor = "mocha";
     #};
 
-  };
+  #};
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "blue";
-    };
+  #  catppuccin = {
+  #    enable = true;
+  #    flavor = "mocha";
+  #    accent = "blue";
+  #  };
     iconTheme = {
       #name = "Papirus-Dark";
       name = "kora";

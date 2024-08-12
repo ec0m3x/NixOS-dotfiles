@@ -6,7 +6,7 @@
       ../../home/wm/hyprland/hyprland.nix
       ../../home/hardware/bluetooth.nix
       ../../home/shell/cli-collection.nix
-      ../../home/style/style.nix
+      ../../home/style/stylix.nix
       ../../home/app/git/git.nix
       ../../home/app/development/vscode.nix
       ../../home/app/cloud/nextcloud-client.nix

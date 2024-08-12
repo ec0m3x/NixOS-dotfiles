@@ -5,17 +5,30 @@
     nixpkgs.url = "nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     catppuccin.url = "github:catppuccin/nix";
+    stylix.url = "github:danth/stylix";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, catppuccin, stylix, ... }:
 
   let
+      # --- System Settings --- #
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true; };
+
+      # --- User Settings --- #
+      userSettings = rec {
+        username = "ecomex";
+        name = "Sebastian";
+        email = "skoch@sks-concept.de";
+        theme = "gruvbox-dark-medium";
+        font = "Intel One Mono";
+        fontPkg = pkgs.intel-one-mono;
+      };
+
   in {
 
     nixosConfigurations = {
@@ -24,9 +37,11 @@
         modules = [ 
           ./hosts/desktop/configuration.nix
           catppuccin.nixosModules.catppuccin
+          stylix.nixosModules.stylix
         ];
         specialArgs = {
           inherit pkgs-unstable;
+          inherit userSettings;
         };
       };
     };
@@ -40,6 +55,7 @@
         ];
         extraSpecialArgs = {
           inherit pkgs-unstable;
+          inherit userSettings;
         };
       };
     };
