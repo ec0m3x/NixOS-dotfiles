@@ -17,7 +17,7 @@
       ../../system/security/gpg.nix
       ../../system/security/pam.nix
       #../../system/security/automount.nix
-      ../../system/security/tailscale.nix
+      #../../system/security/tailscale.nix
       ../../system/style/stylix.nix
     ];
 
