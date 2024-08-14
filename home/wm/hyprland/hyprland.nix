@@ -874,7 +874,6 @@
   services.dunst = {
     enable = true;
     package = pkgs-unstable.dunst;
-    catppuccin.enable = true;
   };
 
   services.playerctld.enable = true;

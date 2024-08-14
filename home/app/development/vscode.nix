@@ -9,8 +9,6 @@
     userSettings = {
       "files.autoSave" = "on";
       "[nix]"."editor.tabSize" = 2;
-      "workbench.colorTheme" = "Catppuccin Mocha";
-      "workbench.iconTheme" = "catppuccin-mocha";
       "window.menuBarVisibility" = "toggle";
       "window.density.editorTabHeight" = "compact";
       "git.enableSmartCommit" = true;

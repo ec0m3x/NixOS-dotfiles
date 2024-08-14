@@ -8,15 +8,15 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #../../system/hardware/bluetooth.nix
-      #../../system/hardware/zram.nix
-      #../../system/hardware/xbox-controller.nix
+      ../../system/hardware/bluetooth.nix
+      ../../system/hardware/zram.nix
+      ../../system/hardware/xbox-controller.nix
       ../../system/wm/hyprland.nix
-      #../../system/app/games/games.nix
-      #../../system/app/virtualisation/virtualisation.nix
+      ../../system/app/games/games.nix
+      ../../system/app/virtualisation/virtualisation.nix
       ../../system/security/gpg.nix
       ../../system/security/pam.nix
-      #../../system/security/automount.nix
+      ../../system/security/automount.nix
       #../../system/security/tailscale.nix
       ../../system/style/stylix.nix
     ];
@@ -60,6 +60,7 @@
   users.users.ecomex = {
     isNormalUser = true;
     description = "ecomex";
+    initialPassword = "geheim";
     extraGroups = [ "networkmanager" "wheel" "input" "dialout" "libvirtd" "kvm" "gamemode"];
     packages = with pkgs; [];
   };
@@ -89,7 +90,7 @@
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal
-      #pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 

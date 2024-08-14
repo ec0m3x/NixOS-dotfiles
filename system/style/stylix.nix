@@ -7,29 +7,14 @@ in
 
 {
 
-  stylix.polarity = themePolarity;
-
-  stylix.image = /home/ecomex/wallpapers/apple-dark.jpg;
-
-  stylix.base16Scheme = themePath;
-  stylix.fonts = {
-    monospace = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
-    serif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
-    sansSerif = {
-      name = userSettings.font;
-      package = userSettings.fontPkg;
-    };
-    emoji = {
-      name = "Noto Color Emoji";
-      package = pkgs.noto-fonts-emoji-blob-bin;
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+    polarity = "dark";
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
     };
   };
-
-  stylix.targets.gtk.enable = true;
 }

@@ -14,14 +14,14 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/4932288a-56c3-419b-903a-5b2286674c11";
+    { device = "/dev/disk/by-uuid/4aa38321-389f-43cb-baa9-1efabc935ac8";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-aa6c0642-72b5-4d7b-8e69-ae16190dc454".device = "/dev/disk/by-uuid/aa6c0642-72b5-4d7b-8e69-ae16190dc454";
+  boot.initrd.luks.devices."luks-486888f4-7f15-4717-8a3e-1d1399cbc603".device = "/dev/disk/by-uuid/486888f4-7f15-4717-8a3e-1d1399cbc603";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/3953-40FC";
+    { device = "/dev/disk/by-uuid/1C7D-A2D5";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
@@ -35,6 +35,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp33s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp42s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp48s0f3u1u1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp48s0f4u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
