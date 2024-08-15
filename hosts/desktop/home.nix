@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -29,9 +29,9 @@
     pkgs.libreoffice-fresh
     
     # Gnome stuff
-    pkgs.gnome.adwaita-icon-theme
-    pkgs.gnome.nautilus
-    pkgs.gnome.seahorse
+    pkgs.adwaita-icon-theme
+    pkgs.nautilus
+    pkgs.seahorse
     pkgs.gnome.gnome-maps
 
     # Media
@@ -44,13 +44,13 @@
     pkgs.movit
     pkgs.mediainfo
     pkgs.libmediainfo
-    pkgs.gnome.cheese
+    pkgs.cheese
     pkgs.spotify
 
     # Communication
-    pkgs-unstable.webcord
-    pkgs-unstable.betterdiscord-installer
-    pkgs-unstable.geary
+    pkgs.webcord
+    pkgs.betterdiscord-installer
+    pkgs.geary
   ];
 
 

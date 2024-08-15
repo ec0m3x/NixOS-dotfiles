@@ -1,10 +1,10 @@
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
   programs.vscode = {
     enable = true;
-    package = pkgs-unstable.vscode;
+    package = pkgs.vscode;
     enableUpdateCheck = false;
     userSettings = {
       "files.autoSave" = "on";

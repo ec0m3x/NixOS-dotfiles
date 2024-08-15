@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, userSettings, ... }:
 
 {
   imports = [
@@ -12,7 +12,6 @@
     settings = { };
     extraConfig = ''
       exec-once = dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
-      #exec-once = hyprctl setcursor Quintom_Ink 24
 
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
@@ -303,6 +302,10 @@
     nwg-launchers
     papirus-icon-theme
     gsettings-desktop-schemas
+    libsForQt5.qt5ct
+    libsForQt5.breeze-qt5
+    libsForQt5.breeze-icons
+    noto-fonts-monochrome-emoji
     wlr-randr
     wtype
     ydotool
@@ -329,7 +332,7 @@
     pamixer
     wofi
     networkmanagerapplet
-    transmission-gtk
+    transmission_4-gtk
     ];
   
   home.file.".config/hypr/hypridle.conf".text = ''
@@ -455,24 +458,16 @@
           "interval" = 1;
           "format" = "{:%I:%M:%S %p}";
           "timezone" = "Europe/Berlin";
-          "tooltip-format" = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
+          "tooltip" = false;
         };
         "clock#date" = {
           "interval" = 1;
-          "format" = "{:%a %Y-%m-%d}";
+          "format" = "{:%a %d-%m-%Y}";
           "timezone" = "Europe/Berlin";
-          "tooltip-format" = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
+          "tooltip" = false;
         };
         "group/time" = {
           "orientation" = "horizontal";
-          "drawer" = {
-            "transition-duration" = 500;
-            "transition-left-to-right" = false;
-          };
           "modules" = [ "clock#time" "clock#date" ];
         };
 
@@ -574,7 +569,7 @@
     style = ''
       * {
           /* `otf-font-awesome` is required to be installed for icons */
-          font-family: FontAwesome;
+          font-family: FontAwesome, ''+userSettings.font+'';
 
           font-size: 20px;
       }
@@ -799,7 +794,7 @@
   home.file.".config/hypr/hyprlock.conf".text = ''
     background {
       monitor =
-      path = screenshot
+      #path = screenshot
 
       # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
       blur_passes = 4
@@ -812,18 +807,17 @@
     }
 
     # doesn't work yet
-    image {
-      monitor =
-      path = /home/ecomex/Media/Pictures/Avatars/istockphoto-519165604-170667a.jpg  
-      size = 150 # lesser side if not 1:1 ratio
-      rounding = -1 # negative values mean circle
-      border_size = 0
-      rotate = 0 # degrees, counter-clockwise
-
-      position = 0, 300
-      halign = center
-      valign = center
-    }
+    #image {
+    #  monitor =
+    #  path = /home/ecomex/Media/Pictures/Avatars/istockphoto-519165604-170667a.jpg  
+    #  size = 150 # lesser side if not 1:1 ratio
+    #  rounding = -1 # negative values mean circle
+    #  border_size = 0
+    #  rotate = 0 # degrees, counter-clockwise
+    #  position = 0, 300
+    #  halign = center
+    #  valign = center
+    #}
 
     input-field {
       monitor =
@@ -873,10 +867,17 @@
 
   services.dunst = {
     enable = true;
-    package = pkgs-unstable.dunst;
+    package = pkgs.dunst;
   };
 
   services.playerctld.enable = true;
+  programs.feh.enable = true;
+  qt = {
+    enable = true;
+    style.package = pkgs.libsForQt5.breeze-qt5;
+    style.name = "kvantum";
+    platformTheme.name = "kvantum";
+  };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";

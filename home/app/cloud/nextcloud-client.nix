@@ -1,15 +1,15 @@
-{ config, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
   
   {
     # Nextcloud client
-    home.packages = with pkgs-unstable; [
+    home.packages = with pkgs; [
       nextcloud-client
     ];
 
     services.nextcloud-client = {
       enable = true;
       startInBackground =  true;
-      package = pkgs-unstable.nextcloud-client;
+      package = pkgs.nextcloud-client;
     };
   }
   

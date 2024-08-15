@@ -13,6 +13,7 @@
     brightnessctl
     gnugrep
     bat eza fd bottom ripgrep
+    tree
     rsync
     unzip
     w3m
