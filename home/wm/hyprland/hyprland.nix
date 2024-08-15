@@ -341,19 +341,19 @@
       before_sleep_cmd = hyprlock  ## loginctl lock-session
       ignore_dbus_inhibit = false
     }
+    #listener {
+    #  timeout = 160 # in seconds
+    #  on-timeout = hyprctl dispatch dpms off
+    #  on-resume = hyprctl dispatch dpms on
+    #}
     listener {
       timeout = 180 # in seconds
-      on-timeout = hyprctl dispatch dpms off
-      on-resume = hyprctl dispatch dpms on
-    }
-    listener {
-      timeout = 160 # in seconds
       on-timeout = hyprlock ##loginctl lock-session
     }
     listener {
       timeout = 900 # in seconds
       on-timeout = systemctl suspend
-      on-resume = hyprctl dispatch dpms on
+      #on-resume = hyprctl dispatch dpms on
     }
   '';
 
