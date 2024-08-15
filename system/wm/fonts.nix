@@ -6,5 +6,6 @@
     nerdfonts
     font-awesome
     font-awesome_5
+    intel-one-mono
   ];
 }

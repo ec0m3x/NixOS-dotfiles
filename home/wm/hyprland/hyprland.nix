@@ -306,6 +306,7 @@
     libsForQt5.breeze-qt5
     libsForQt5.breeze-icons
     noto-fonts-monochrome-emoji
+    intel-one-mono
     wlr-randr
     wtype
     ydotool
@@ -334,28 +335,7 @@
     networkmanagerapplet
     transmission_4-gtk
     ];
-  
-  home.file.".config/hypr/hypridle.conf".text = ''
-    general {
-      lock_cmd = pgrep hyprlock || hyprlock
-      before_sleep_cmd = hyprlock  ## loginctl lock-session
-      ignore_dbus_inhibit = false
-    }
-    #listener {
-    #  timeout = 160 # in seconds
-    #  on-timeout = hyprctl dispatch dpms off
-    #  on-resume = hyprctl dispatch dpms on
-    #}
-    listener {
-      timeout = 180 # in seconds
-      on-timeout = hyprlock ##loginctl lock-session
-    }
-    listener {
-      timeout = 900 # in seconds
-      on-timeout = systemctl suspend
-      #on-resume = hyprctl dispatch dpms on
-    }
-  '';
+
 
   # waybar
 
@@ -864,6 +844,29 @@
       valign = center
     }
   '';
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+
+      listener = [
+        {
+        timeout = 900;
+        on-timeout = "hyprlock";
+        }
+        {
+        timeout = 1200;
+        on-timeout = "hyprctl dispatch dpms off";
+        on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
 
   services.dunst = {
     enable = true;
