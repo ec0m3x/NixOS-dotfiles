@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   imports =
@@ -10,6 +10,7 @@
       ../../home/app/git/git.nix
       ../../home/app/development/vscode.nix
       ../../home/app/cloud/nextcloud-client.nix
+      (./. + "../../../home/app/browser"+("/"+userSettings.browser)+".nix")
     ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,7 +23,6 @@
   home.packages = [
     # Core
     pkgs.zsh
-    pkgs.firefox
     pkgs.git
 
     # Office
@@ -56,7 +56,7 @@
 
   home.sessionVariables = {
     EDITOR = "vscode";
-    BROWSER = "firefox";
+    BROWSER = userSettings.browser;
 
   };
 
@@ -83,6 +83,8 @@
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+
+  news.display = "silent";
   
 
   # Let Home Manager install and manage itself.

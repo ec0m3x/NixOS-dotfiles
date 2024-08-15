@@ -62,6 +62,7 @@
         username = "ecomex";
         name = "Sebastian";
         email = "skoch@sks-concept.de";
+        browser = "firefox";
         theme = "catppuccin-mocha";
         font = "Intel One Mono";
         fontPkg = pkgs.intel-one-mono;
