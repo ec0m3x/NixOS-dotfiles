@@ -10,9 +10,11 @@
       "files.autoSave" = "on";
       "[nix]"."editor.tabSize" = 2;
       "window.menuBarVisibility" = "toggle";
-      "window.density.editorTabHeight" = "compact";
+      "window.density.editorTabHeight" = "default";
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
+      "workbench.iconTheme" = "catppuccin-mocha";
+      "workbench.colorTheme" = "Tokyo Night AltSynt";
     };
   };
 

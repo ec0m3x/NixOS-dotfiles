@@ -7,5 +7,7 @@
     font-awesome
     font-awesome_5
     intel-one-mono
+    noto-fonts
+    noto-fonts-extra
   ];
 }

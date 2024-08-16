@@ -16,7 +16,7 @@
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
-      env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      ###env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
       env = GDK_BACKEND,wayland,x11,*
       env = QT_QPA_PLATFORM,wayland;xcb
       env = QT_QPA_PLATFORMTHEME,qt5ct
@@ -307,6 +307,8 @@
     libsForQt5.breeze-icons
     noto-fonts-monochrome-emoji
     intel-one-mono
+    noto-fonts
+    noto-fonts-extra
     wlr-randr
     wtype
     ydotool
@@ -771,79 +773,41 @@
       '';
   };
 
-  home.file.".config/hypr/hyprlock.conf".text = ''
-    background {
-      monitor =
-      #path = screenshot
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        disable_loading_bar = true;
+        grace = 300;
+        hide_cursor = true;
+        no_fade_in = false;
+      };
 
-      # all these options are taken from hyprland, see https://wiki.hyprland.org/Configuring/Variables/#blur for explanations
-      blur_passes = 4
-      blur_size = 5
-      noise = 0.0117
-      contrast = 0.8916
-      brightness = 0.8172
-      vibrancy = 0.1696
-      vibrancy_darkness = 0.0
-    }
+      background = [
+        {
+        path = "screenshot";
+        blur_passes = 3;
+        blur_size = 8;
+        }
+      ];
 
-    # doesn't work yet
-    #image {
-    #  monitor =
-    #  path = /home/ecomex/Media/Pictures/Avatars/istockphoto-519165604-170667a.jpg  
-    #  size = 150 # lesser side if not 1:1 ratio
-    #  rounding = -1 # negative values mean circle
-    #  border_size = 0
-    #  rotate = 0 # degrees, counter-clockwise
-    #  position = 0, 300
-    #  halign = center
-    #  valign = center
-    #}
-
-    input-field {
-      monitor =
-      size = 200, 50
-      outline_thickness = 3
-      dots_size = 0.2 # Scale of input-field height, 0.2 - 0.8
-      dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
-      dots_center = true
-      dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
-      outer_color = rgb(151515)
-      inner_color = rgb(200, 200, 200)
-      font_color = rgb(10, 10, 10)
-      fade_on_empty = false
-      fade_timeout = 1000 # Milliseconds before fade_on_empty is triggered.
-      placeholder_text = <i>Enter Password...</i> # Text rendered in the input box when it's empty.
-      hide_input = false
-      rounding = -1 # -1 means complete rounding (circle/oval)
-      check_color = rgb(204, 136, 34)
-      fail_color = rgb(204, 34, 34)
-      fail_text = <i>$FAIL <b>($ATTEMPTS)</b></i> # can be set to empty
-      fail_transition = 300 # transition time in ms between normal outer_color and fail_color
-      capslock_color = -1
-      numlock_color = -1
-      bothlock_color = -1 # when both locks are active. -1 means don't change outer color (same for above)
-      invert_numlock = false # change color if numlock is off
-      swap_font_color = false # see below
-
-      position = 0, -60
-      halign = center
-      valign = center
-    }
-
-    label {
-      monitor =
-      text = Hello, 3c0m3x
-      color = rgba(200, 200, 200, 1.0)
-      font_size = 25
-      font_family = Noto Sans
-
-      rotate = 0 # degrees, counter-clockwise
-
-      position = 0, 160
-      halign = center
-      valign = center
-    }
-  '';
+      input-field = [
+        {
+        size = "200, 50";
+        position = "0, -80";
+        monitor = "";
+        dots_center = true;
+        fade_on_empty = false;
+        font_color = "rgb(202, 211, 245)";
+        inner_color = "rgb(91, 96, 120)";
+        outer_color = "rgb(24, 25, 38)";
+        outline_thickness = 5;
+        placeholder_text = "Enter Password ... ";
+        shadow_passes = 2;
+        }
+      ];
+    };
+  };
 
   services.hypridle = {
     enable = true;
@@ -856,12 +820,17 @@
 
       listener = [
         {
-        timeout = 900;
+        timeout = 300;
         on-timeout = "hyprlock";
         }
         {
-        timeout = 1200;
+        timeout = 600;
         on-timeout = "hyprctl dispatch dpms off";
+        on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+        timeout = 900;
+        on-timeout = "systemctl suspend";
         on-resume = "hyprctl dispatch dpms on";
         }
       ];
@@ -874,13 +843,6 @@
   };
 
   services.playerctld.enable = true;
-  programs.feh.enable = true;
-  qt = {
-    enable = true;
-    style.package = pkgs.libsForQt5.breeze-qt5;
-    style.name = "kvantum";
-    platformTheme.name = "kvantum";
-  };
 
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     Unit.Description = "polkit-gnome-authentication-agent-1";
