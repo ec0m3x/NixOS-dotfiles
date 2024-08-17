@@ -12,12 +12,13 @@
       ../../system/hardware/zram.nix
       ../../system/hardware/graphics.nix
       ../../system/hardware/xbox-controller.nix
+      ../../system/hardware/kernel.nix
+      ../../system/hardware/printing.nix
       ../../system/wm/hyprland.nix
       ../../system/app/virtualisation.nix
       ../../system/app/steam.nix
       ../../system/app/flatpak.nix
       ../../system/security/gpg.nix
-      ../../system/hardware/kernel.nix
       ../../system/security/automount.nix
       ../../system/security/tailscale.nix
       ../../system/style/stylix.nix
