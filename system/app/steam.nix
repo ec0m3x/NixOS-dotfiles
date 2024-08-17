@@ -18,8 +18,8 @@
   environment.systemPackages = with pkgs; [
     mangohud
     protonup
+    gamemode
   ];
-
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =
       "\${HOME}/.steam/root/compatibilitytools.d";

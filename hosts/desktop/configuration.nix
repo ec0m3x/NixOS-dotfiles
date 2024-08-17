@@ -13,8 +13,9 @@
       ../../system/hardware/graphics.nix
       ../../system/hardware/xbox-controller.nix
       ../../system/wm/hyprland.nix
-      ../../system/app/virtualisation/virtualisation.nix
-      ../../system/app/gaming/steam.nix
+      ../../system/app/virtualisation.nix
+      ../../system/app/steam.nix
+      ../../system/app/flatpak.nix
       ../../system/security/gpg.nix
       ../../system/hardware/kernel.nix
       ../../system/security/automount.nix
