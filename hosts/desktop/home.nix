@@ -83,6 +83,10 @@
   };
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
+  xdg.mimeApps.associations.added = {
+    "image/jpeg" = "feh.desktop";
+    "image/png" = "feh.desktop";
+  };
 
   news.display = "silent";
   

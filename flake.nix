@@ -64,6 +64,7 @@
         email = "skoch@sks-concept.de";
         browser = "firefox";
         theme = "catppuccin-mocha";
+        wallpaper ="hyprland.jpg"; # pick one of themes/wallpapers
         font = "Intel One Mono";
         fontPkg = pkgs.intel-one-mono;
       };

@@ -4,7 +4,6 @@
   imports = [
     ../../app/terminal/kitty.nix
     ../../app/terminal/alacritty.nix
-    ../../app/browser/brave.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -16,7 +15,7 @@
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
-      ###env = WLR_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      env = AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
       env = GDK_BACKEND,wayland,x11,*
       env = QT_QPA_PLATFORM,wayland;xcb
       env = QT_QPA_PLATFORMTHEME,qt5ct
@@ -104,7 +103,7 @@
 
 
        bind=SUPERCTRL,S,exec,systemctl suspend
-       bind=SUPERCTRL,L,exec,hyprlock
+       bind=SUPERCTRL,L,exec,loginctl lock-session
 
        bind=SUPER,H,movefocus,l
        bind=SUPER,J,movefocus,d
@@ -249,6 +248,7 @@
 
        # monitor setup
        monitor=HDMI-A-1,3440x1440@100,0x0,1
+       monitor=HDMI-A-2,3440x1440@100,0x0,1
 
        # hdmi tv
        #monitor=eDP-1,1920x1080,1920x0,1
@@ -316,8 +316,8 @@
     hyprland-protocols
     hyprpicker
     hyprpaper
-    hypridle
     hyprlock
+    hypridle
     fnott
     playerctl
     keepmenu
@@ -777,33 +777,44 @@
     enable = true;
     settings = {
       general = {
-        disable_loading_bar = true;
-        grace = 300;
+        grace = 5;
         hide_cursor = true;
-        no_fade_in = false;
       };
 
       background = [
         {
-        path = "screenshot";
-        blur_passes = 3;
-        blur_size = 8;
+          path = "screenshot";
+          blur_passes = 2;
+          blur_size = 6;
         }
       ];
 
       input-field = [
         {
-        size = "200, 50";
-        position = "0, -80";
-        monitor = "";
-        dots_center = true;
-        fade_on_empty = false;
-        font_color = "rgb(202, 211, 245)";
-        inner_color = "rgb(91, 96, 120)";
-        outer_color = "rgb(24, 25, 38)";
-        outline_thickness = 5;
-        placeholder_text = "Enter Password ... ";
-        shadow_passes = 2;
+          size = "250, 60";
+          outer_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          font_color = "rgb(202, 211, 245)";
+          placeholder_text = "Enter password ...";
+        }
+      ];
+
+      label = [
+        {
+          text = "Hello 3c0m3x";
+          font_size = 44;
+          text_align = "center";
+          halign = "center";
+          valign = "center";
+          position = "0, 160";
+        }
+        {
+          text = "$TIME";
+          font_size = 32;
+          text_align = "center";
+          halign = "center";
+          valign = "center";
+          position = "0, 75";
         }
       ];
     };
@@ -813,25 +824,23 @@
     enable = true;
     settings = {
       general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        ignore_dbus_inhibit = false;
-        lock_cmd = "hyprlock";
+        lock_cmd = "${lib.getExe pkgs.hyprlock}";
+        before_sleep_cmd = "${lib.getExe pkgs.hyprlock}";
       };
 
       listener = [
         {
-        timeout = 300;
-        on-timeout = "hyprlock";
+          timeout = 300;
+          on-timeout = "${lib.getExe pkgs.hyprlock}";
         }
         {
-        timeout = 600;
-        on-timeout = "hyprctl dispatch dpms off";
-        on-resume = "hyprctl dispatch dpms on";
+          timeout = 305;
+          on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+          on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
         }
         {
-        timeout = 900;
-        on-timeout = "systemctl suspend";
-        on-resume = "hyprctl dispatch dpms on";
+          timeout = 900;
+          on-timeout = "systemctl suspend";
         }
       ];
     };

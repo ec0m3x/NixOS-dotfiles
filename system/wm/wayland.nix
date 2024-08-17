@@ -10,6 +10,7 @@
   environment.systemPackages = with pkgs;
     [
       wayland
+      sddm-chili-theme
     ];
 
   # Configure xwayland
@@ -24,8 +25,9 @@
   # Configure SDDM
   services.displayManager.sddm = {
     enable = true;
-    package = pkgs.kdePackages.sddm;
+    package = pkgs.sddm;
+    theme = "chili";
     wayland.enable = true;
-    enableHidpi = false;
+    enableHidpi = true;
   };
 }

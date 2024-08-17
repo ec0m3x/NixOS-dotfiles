@@ -16,7 +16,7 @@
       ../../system/app/virtualisation/virtualisation.nix
       ../../system/app/gaming/steam.nix
       ../../system/security/gpg.nix
-      ../../system/security/pam.nix
+      ../../system/hardware/kernel.nix
       ../../system/security/automount.nix
       ../../system/security/tailscale.nix
       ../../system/style/stylix.nix

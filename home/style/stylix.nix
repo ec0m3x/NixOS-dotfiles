@@ -4,6 +4,7 @@
   let
     themePath = "${pkgs.base16-schemes}/share/themes/"+userSettings.theme+".yaml";
     themePolarity = "dark";
+    wallpaper = userSettings.wallpaper;
   in
 
 {  
@@ -11,7 +12,7 @@
     enable = true;
     autoEnable = false;
     base16Scheme = themePath;
-    image = ../../theme/wallpapers/hyprland.jpg;
+    image = ../../theme/wallpapers/${wallpaper};
     polarity = themePolarity;
     cursor = {
       package = pkgs.bibata-cursors;
@@ -36,7 +37,7 @@
         package = pkgs.noto-fonts-monochrome-emoji;
       };
       sizes = {
-        terminal = 14;
+        terminal = 12;
         applications = 12;
         popups = 12;
         desktop = 12;
@@ -49,7 +50,14 @@
   stylix.targets.kitty.enable = true;
   stylix.targets.gtk.enable = true;
   stylix.targets.feh.enable = true;
-
+  stylix.targets.btop.enable = true;
+  stylix.targets.dunst.enable = true;
+  stylix.targets.firefox.enable = true;
+  stylix.targets.hyprland.enable = true;
+  stylix.targets.vesktop.enable = true;
+  stylix.targets.vscode.enable = true;
+  stylix.targets.wofi.enable = true;
+  stylix.targets.swaylock.enable = true;
 
   gtk = {
     enable = true;
@@ -59,12 +67,12 @@
     };
   };
 
-  home.file.".config/hypr/hyprpaper.conf".text = ''
-    preload = ''+config.stylix.image+''
+  #home.file.".config/hypr/hyprpaper.conf".text = ''
+  #  preload = ''+config.stylix.image+''
 
-    wallpaper = ,''+config.stylix.image+''
+  #  wallpaper = ,''+config.stylix.image+''
 
-  '';
+  #'';
 
   home.packages = with pkgs; [
      libsForQt5.qt5ct pkgs.libsForQt5.breeze-qt5 libsForQt5.breeze-icons pkgs.noto-fonts-monochrome-emoji
