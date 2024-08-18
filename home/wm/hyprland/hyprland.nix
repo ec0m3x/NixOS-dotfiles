@@ -26,7 +26,6 @@
 
       exec-once = nm-applet
       exec-once = blueman-applet
-      exec-once = waybar
       exec-once = hypridle
       exec-once = hyprpaper
       exec-once = dunst
@@ -343,6 +342,7 @@
 
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";

@@ -11,15 +11,15 @@
 
   systemd.mounts = [{
     description = "Mount for SMB Share";
-    what = "//192.168.0.20/ecomex_data/";
-    where = "/home/ecomex/Truenas";
+    what = "//192.168.0.131/nas/";
+    where = "/home/ecomex/NAS";
     type = "cifs";
     options = "credentials=/home/ecomex/.smbcredentials/ecomex-smb,rw,uid=1000,gid=1000";
     }];
 
   systemd.automounts = [{
     description = "Automount for SMB Share";
-    where = "/home/ecomex/Truenas";
+    where = "/home/ecomex/NAS";
     wantedBy = [ "multi-user.target" ];
   }];
   
