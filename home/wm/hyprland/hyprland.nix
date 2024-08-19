@@ -16,7 +16,7 @@
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
       env = AQ_DRM_DEVICES,/dev/dri/card1
-      env = WLR_DRM_DEVICES,/dev/dri/card1
+      #env = WLR_DRM_DEVICES,/dev/dri/card1
       env = GDK_BACKEND,wayland,x11,*
       env = QT_QPA_PLATFORM,wayland;xcb
       env = QT_QPA_PLATFORMTHEME,qt5ct
@@ -26,10 +26,8 @@
       env = GDK_PIXBUF_MODULE_FILE,${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 
       exec-once = nm-applet
-      exec-once = blueman-applet
-      exec-once = hypridle
-      exec-once = hyprpaper
-      exec-once = dunst
+      #exec-once = blueman-applet
+      #exec-once = dunst
 
       bezier = wind, 0.05, 0.9, 0.1, 1.05
       bezier = winIn, 0.1, 1.1, 0.1, 1.0

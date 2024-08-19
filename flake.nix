@@ -13,41 +13,23 @@
     home-manager-unstable.url = "github:nix-community/home-manager/master";
     home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland = {
-      type = "git";
-      url = "https://code.hyprland.org/hyprwm/Hyprland.git";
-      submodules = true;
-      rev = "c7b72790bd63172f04ee86784d4cb2a400532927"; #v0.42.0
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      type = "git";
-      url = "https://code.hyprland.org/hyprwm/hyprland-plugins.git";
-      rev = "b73d7b901d8cb1172dd25c7b7159f0242c625a77"; #v0.42.0
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprlock = {
-      type = "git";
-      url = "https://code.hyprland.org/hyprwm/hyprlock.git";
-      rev = "58e1a4a4997728be886a46d031514b3f09763c5d";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, stylix, hyprland, hyprland-plugins, hyprlock, ... }:
-
+  #outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, stylix, hyprland, ... }:
+  outputs = {self, ... }@inputs:
   let
       # --- System Settings --- #
-      lib = nixpkgs.lib;
+      lib = inputs.nixpkgs.lib;
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
           allowUnfreePredicate = (_: true);
         };
       };
-      pkgs-stable = import nixpkgs-stable {
+      pkgs-stable = import inputs.nixpkgs-stable {
         inherit system;
         config = {
           allowUnfree = true;
@@ -55,7 +37,7 @@
         };
       };
 
-      home-manager = home-manager-unstable;
+      home-manager = inputs.home-manager-unstable;
 
       # --- User Settings --- #
       userSettings = rec {
@@ -76,10 +58,11 @@
         inherit system;
         modules = [ 
           ./hosts/desktop/configuration.nix
-          stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
-          inherit pkgs-stable;
+          #inherit pkgs-stable;
+          inherit inputs;
           inherit userSettings;
         };
       };
@@ -90,10 +73,11 @@
         inherit pkgs;
         modules = [ 
           ./hosts/desktop/home.nix
-          stylix.homeManagerModules.stylix
+          inputs.stylix.homeManagerModules.stylix
         ];
         extraSpecialArgs = {
-          inherit pkgs-stable;
+          #inherit pkgs-stable;
+          inherit inputs;
           inherit userSettings;
         };
       };
