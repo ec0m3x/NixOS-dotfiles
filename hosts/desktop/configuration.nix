@@ -73,6 +73,7 @@
     zsh
     curl
     git
+    nfs-utils
     home-manager
   ];
 
@@ -83,15 +84,7 @@
 
   fonts.fontDir.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-
-
+  nix.settings.auto-optimise-store = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

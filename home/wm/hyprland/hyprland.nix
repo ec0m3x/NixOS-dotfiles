@@ -15,7 +15,8 @@
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
-      env = AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      env = AQ_DRM_DEVICES,/dev/dri/card1
+      env = WLR_DRM_DEVICES,/dev/dri/card1
       env = GDK_BACKEND,wayland,x11,*
       env = QT_QPA_PLATFORM,wayland;xcb
       env = QT_QPA_PLATFORMTHEME,qt5ct
@@ -49,19 +50,15 @@
       }
 
       general {
-        layout = dwindle
-        border_size = 2
+        layout = master
+        border_size = 1
         resize_on_border = false
-        gaps_in = 7
-        gaps_out = 7
+        gaps_in = 5
+        gaps_out = 5
         # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
         col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
         col.inactive_border = rgba(595959aa)
        }
-      dwindle {
-          pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true # You probably want this
-      }
 
       cursor {
         no_warps = false

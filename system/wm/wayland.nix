@@ -11,6 +11,7 @@
     [
       wayland
       sddm-chili-theme
+      xwaylandvideobridge
     ];
 
   # Configure xwayland
@@ -23,11 +24,17 @@
   };
   
   # Configure SDDM
-  services.displayManager.sddm = {
-    enable = true;
-    package = pkgs.sddm;
-    theme = "chili";
-    wayland.enable = true;
-    enableHidpi = true;
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "ecomex";
+    };
+    sddm = {
+      enable = true;
+      package = pkgs.sddm;
+      theme = "chili";
+      wayland.enable = false;
+      enableHidpi = false;
+    };
   };
 }

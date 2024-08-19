@@ -23,11 +23,18 @@
       xwayland = {
         enable = true;
       };
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };
-
-  
-
-
+  xdg.portal = {
+    enable = true;
+      xdgOpenUsePortal = true;
+      config = {
+        common.default = ["hyprland"];
+        hyprland.default = ["hyprland"];
+      };
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-hyprland
+    ];
+  };
 }

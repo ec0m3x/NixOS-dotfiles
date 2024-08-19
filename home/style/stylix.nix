@@ -29,8 +29,8 @@
         package = userSettings.fontPkg;
       };
       sansSerif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
+        name = "DejaVu Sans";
+        package = pkgs.dejavu_fonts;
       };
       emoji = {
         name = "Noto Emoji";
@@ -39,7 +39,7 @@
       sizes = {
         terminal = 12;
         applications = 12;
-        popups = 12;
+        popups = 10;
         desktop = 12;
       };
     }; 

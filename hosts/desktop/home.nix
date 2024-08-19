@@ -48,8 +48,9 @@
     pkgs.spotify
 
     # Communication
-    pkgs.webcord
-    pkgs.betterdiscord-installer
+    #pkgs.webcord
+    pkgs.discord
+    pkgs.vesktop
     pkgs.geary
   ];
 

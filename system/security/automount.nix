@@ -9,7 +9,7 @@
 
   boot.supportedFilesystems = [ "cifs" ];
 
-  systemd.mounts = [{
+/*   systemd.mounts = [{
     description = "Mount for SMB Share";
     what = "//192.168.0.131/nas/";
     where = "/home/ecomex/NAS";
@@ -21,7 +21,7 @@
     description = "Automount for SMB Share";
     where = "/home/ecomex/NAS";
     wantedBy = [ "multi-user.target" ];
-  }];
+  }]; */
   
   fileSystems."/home/ecomex/Devices/SSD1-250GB" = {
     device = "/dev/disk/by-uuid/5ee2439c-1e49-4604-8181-57cd84353879";
@@ -39,5 +39,11 @@
     device = "/dev/disk/by-uuid/fbe144f6-105d-49a7-9bcb-2f2f83c1858f";
     fsType = "auto";
     options = [ "noatime" "nosuid" "nodev" "nofail" "x-gvfs-show"]; # Optional, similar to mount options in fstab
+  };
+
+  fileSystems."/home/ecomex/NFS" = {
+    device = "192.168.0.131:/mnt/user/NAS";
+    fsType = "nfs";
+    options = [ "rw" "x-systemd.automount" "x-systemd.requires=network-online.target" "x-systemd.device-timeout=10s" ];
   };
 }
