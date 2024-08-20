@@ -53,6 +53,10 @@
     #pkgs.discord
     pkgs.vesktop
     pkgs-unstable.webex
+
+    # Fonts
+    pkgs.nerdfonts
+    pkgs.font-awesome
   ];
 
 
