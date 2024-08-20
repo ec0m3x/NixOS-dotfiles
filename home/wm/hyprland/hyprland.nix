@@ -240,8 +240,9 @@
        #bind=SUPERSHIFT,P,exec,hyprprofile-dmenu
 
        # monitor setup
-       monitor=HDMI-A-1,3440x1440@100,0x0,1
-       monitor=HDMI-A-2,3440x1440@100,0x0,1
+       #monitor=HDMI-A-1,3440x1440@100,0x0,1
+       monitor=DP-3,3440x1440@100,0x0,1
+	     #monitor=,preferred,auto,auto
 
        # hdmi tv
        #monitor=eDP-1,1920x1080,1920x0,1
@@ -272,6 +273,7 @@
        misc {
          disable_hyprland_logo = true
          mouse_move_enables_dpms = true
+         allow_session_lock_restore = true
        }
        decoration {
          rounding = 8

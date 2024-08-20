@@ -50,8 +50,7 @@
     # Communication
     #pkgs.webcord
     pkgs.discord
-    pkgs-stable.webcord
-    pkgs-stable.vesktop
+    pkgs.vesktop
     pkgs.geary
   ];
 
