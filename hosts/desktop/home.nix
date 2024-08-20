@@ -52,6 +52,7 @@
     #pkgs.webcord
     #pkgs.discord
     pkgs.vesktop
+    pkgs.webex
   ];
 
 

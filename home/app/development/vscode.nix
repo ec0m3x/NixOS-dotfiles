@@ -14,6 +14,7 @@
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;
       "workbench.iconTheme" = "catppuccin-mocha";
+      "workbench.startupEditor" = "none";
     };
   };
 
