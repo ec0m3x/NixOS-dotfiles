@@ -25,10 +25,10 @@
   
   # Configure SDDM
   services.displayManager = {
-    autoLogin = {
-      enable = true;
-      user = "ecomex";
-    };
+    #autoLogin = {
+    #  enable = true;
+    #  user = "ecomex";
+    #};
     sddm = {
       enable = true;
       package = pkgs.sddm;

@@ -61,7 +61,7 @@
           inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
-          #inherit pkgs-stable;
+          inherit pkgs-stable;
           inherit inputs;
           inherit userSettings;
         };
@@ -76,7 +76,7 @@
           inputs.stylix.homeManagerModules.stylix
         ];
         extraSpecialArgs = {
-          #inherit pkgs-stable;
+          inherit pkgs-stable;
           inherit inputs;
           inherit userSettings;
         };

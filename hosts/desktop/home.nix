@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, pkgs-stable, inputs, userSettings, ... }:
 
 {
   imports =
@@ -50,7 +50,8 @@
     # Communication
     #pkgs.webcord
     pkgs.discord
-    pkgs.vesktop
+    pkgs-stable.webcord
+    pkgs-stable.vesktop
     pkgs.geary
   ];
 
@@ -90,8 +91,6 @@
   };
 
   news.display = "silent";
-  
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

@@ -10,20 +10,19 @@
     enable = true;
     settings = { };
     extraConfig = ''
-      exec-once = dbus-update-activation-environment DISPLAY XAUTHORITY WAYLAND_DISPLAY
+      exec-once = dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY XDG_SESSION_DESKTOP=Hyprland XDG_CURRENT_DESKTOP=Hyprland XDG_SESSION_TYPE=wayland
 
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
-      env = AQ_DRM_DEVICES,/dev/dri/card1
-      #env = WLR_DRM_DEVICES,/dev/dri/card1
       env = GDK_BACKEND,wayland,x11,*
       env = QT_QPA_PLATFORM,wayland;xcb
       env = QT_QPA_PLATFORMTHEME,qt5ct
       env = QT_AUTO_SCREEN_SCALE_FACTOR,1
       env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env = CLUTTER_BACKEND,wayland
-      env = GDK_PIXBUF_MODULE_FILE,${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
+      env = AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      #env = GDK_PIXBUF_MODULE_FILE,${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 
       exec-once = nm-applet
       #exec-once = blueman-applet
@@ -828,11 +827,11 @@
           timeout = 300;
           on-timeout = "${lib.getExe pkgs.hyprlock}";
         }
-        {
+/*         {
           timeout = 305;
           on-timeout = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
           on-resume = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-        }
+        } */
         {
           timeout = 900;
           on-timeout = "systemctl suspend";
@@ -855,7 +854,7 @@
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
-      RestartSec = 1;
+      RestartSec = 6;
       TimeoutStopSec = 10;
     };
   };

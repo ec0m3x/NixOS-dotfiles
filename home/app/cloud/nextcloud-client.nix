@@ -8,7 +8,7 @@
 
     services.nextcloud-client = {
       enable = true;
-      startInBackground =  false;
+      startInBackground =  true;
       package = pkgs.nextcloud-client;
     };
   }

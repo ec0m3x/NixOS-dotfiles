@@ -19,6 +19,7 @@ in
 
   environment = {
     variables.NIXOS_OZONE_WL = "1";
+    variables.MOZ_ENABLE_WAYLAND = "1";
   };
 
   programs = {
