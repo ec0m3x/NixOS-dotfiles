@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-stable, inputs, userSettings, ... }:
+{ config, pkgs, inputs, userSettings, ... }:
 
 {
   imports =
@@ -29,10 +29,12 @@
     pkgs.libreoffice-fresh
     
     # Gnome stuff
-    pkgs.adwaita-icon-theme
-    pkgs.nautilus
-    pkgs.seahorse
+    pkgs.gnome.adwaita-icon-theme
+    pkgs.gnome.nautilus
+    pkgs.gnome.seahorse
     pkgs.gnome.gnome-maps
+    pkgs.gnome.cheese
+    pkgs.gnome.geary
 
     # Media
     pkgs.vlc
@@ -44,14 +46,12 @@
     pkgs.movit
     pkgs.mediainfo
     pkgs.libmediainfo
-    pkgs.cheese
     pkgs.spotify
 
     # Communication
     #pkgs.webcord
-    pkgs.discord
+    #pkgs.discord
     pkgs.vesktop
-    pkgs.geary
   ];
 
 

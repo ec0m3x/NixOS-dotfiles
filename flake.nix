@@ -2,21 +2,14 @@
   description = "My NixOS";
 
   inputs = {
-    nixpkgs-stable.url = "nixpkgs/nixos-24.05";
-    nixpkgs.url = "nixpkgs/nixos-unstable";
-
+    nixpkgs.url = "nixpkgs/nixos-24.05";
+    
     stylix.url = "github:danth/stylix";
 
-    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
-    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
-
-    home-manager-unstable.url = "github:nix-community/home-manager/master";
-    home-manager-unstable.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  #outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, stylix, hyprland, ... }:
   outputs = {self, ... }@inputs:
   let
       # --- System Settings --- #
@@ -29,15 +22,7 @@
           allowUnfreePredicate = (_: true);
         };
       };
-      pkgs-stable = import inputs.nixpkgs-stable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = (_: true);
-        };
-      };
-
-      home-manager = inputs.home-manager-unstable;
+      home-manager = inputs.home-manager;
 
       # --- User Settings --- #
       userSettings = rec {
@@ -61,7 +46,6 @@
           inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
-          inherit pkgs-stable;
           inherit inputs;
           inherit userSettings;
         };
@@ -76,7 +60,6 @@
           inputs.stylix.homeManagerModules.stylix
         ];
         extraSpecialArgs = {
-          inherit pkgs-stable;
           inherit inputs;
           inherit userSettings;
         };

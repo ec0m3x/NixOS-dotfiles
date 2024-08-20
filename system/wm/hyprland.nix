@@ -1,8 +1,4 @@
-{ config,inputs, pkgs, lib, ... }:
-
-let
-  pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+{ config, inputs, pkgs, lib, ... }:
 
 {
   imports = [
@@ -25,8 +21,6 @@ in
   programs = {
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
       xwayland = {
         enable = true;
       };
@@ -48,8 +42,8 @@ in
       #  hyprland.default = ["hyprland"];
       #};
     extraPortals = with pkgs; [
-      #xdg-desktop-portal
-      #xdg-desktop-portal-hyprland
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
     ];
   };
 }

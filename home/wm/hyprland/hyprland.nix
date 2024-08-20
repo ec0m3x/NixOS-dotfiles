@@ -21,7 +21,7 @@
       env = QT_AUTO_SCREEN_SCALE_FACTOR,1
       env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
       env = CLUTTER_BACKEND,wayland
-      env = AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
+      #env = AQ_DRM_DEVICES,/dev/dri/card0:/dev/dri/card1
       #env = GDK_PIXBUF_MODULE_FILE,${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 
       exec-once = nm-applet
