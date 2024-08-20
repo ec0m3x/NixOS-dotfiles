@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, userSettings, ... }:
+{ config, pkgs, pkgs-unstable, inputs, userSettings, ... }:
 
 {
   imports =
@@ -52,7 +52,7 @@
     #pkgs.webcord
     #pkgs.discord
     pkgs.vesktop
-    pkgs.webex
+    pkgs-unstable.webex
   ];
 
 
