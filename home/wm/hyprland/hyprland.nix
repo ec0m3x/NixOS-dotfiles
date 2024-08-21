@@ -25,6 +25,7 @@
       #env = GDK_PIXBUF_MODULE_FILE,${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache
 
       exec-once = nm-applet
+      exec-once = pypr
       #exec-once = blueman-applet
       #exec-once = dunst
 
@@ -70,7 +71,7 @@
        bind=ALTSHIFT,TAB,cyclenext,prev
        bind=ALTSHIFT,TAB,bringactivetotop
 
-       bind=SUPER,V,exec,wl-copy $(wl-paste | tr '\n' ' ')
+       bind=SUPERSHIFT,V,exec,wl-copy $(wl-paste | tr '\n' ' ')
        bind=SUPERSHIFT,T,exec,screenshot-ocr
        bind=CTRLALT,Delete,exec,hyprctl kill
        bind=SUPERSHIFT,K,exec,hyprctl kill
@@ -144,12 +145,6 @@
        bind = SUPER, mouse_down, workspace, e+1
        bind = SUPER, mouse_up, workspace, e-1
 
-       ### Hotkeys ###
-
-       bind=,XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10
-       bind=,XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10
-       bind=,XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t
-       bind=,XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t
 
        # Brightness control
        #bind=,XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl s 1%-
@@ -160,30 +155,18 @@
        bind=,XF86AudioPause,exec,playerctl play-pause # toggle between media play and pause
        bind=,XF86AudioNext,exec,playerctl next # media next
        bind=,XF86AudioPrev,exec,playerctl previous # media previous
+       bind=,XF86AudioLowerVolume,exec,${pkgs.pamixer}/bin/pamixer -d 10
+       bind=,XF86AudioRaiseVolume,exec,${pkgs.pamixer}/bin/pamixer -i 10
+       bind=,XF86AudioMute,exec,${pkgs.pamixer}/bin/pamixer -t
+       bind=,XF86AudioMicMute,exec,${pkgs.pamixer}/bin/pamixer --default-source -t
 
 
-       #bind=SUPER,Z,exec,pypr toggle term && hyprctl dispatch bringactivetotop
-       #bind=SUPER,F,exec,pypr toggle ranger && hyprctl dispatch bringactivetotop
-       #bind=SUPER,N,exec,pypr toggle numbat && hyprctl dispatch bringactivetotop
-       #bind=SUPER,M,exec,pypr toggle music && hyprctl dispatch bringactivetotop
-       #bind=SUPER,B,exec,pypr toggle btm && hyprctl dispatch bringactivetotop
-       #bind=SUPER,D,exec,hypr-element
-       #bind=SUPER,code:172,exec,pypr toggle pavucontrol && hyprctl dispatch bringactivetotop
-       #$scratchpadsize = size 80% 85%
-
-       #$scratchpad = class:^(scratchpad)$
-       #windowrulev2 = float,$scratchpad
-       #windowrulev2 = $scratchpadsize,$scratchpad
-       #windowrulev2 = workspace special silent,$scratchpad
-       #windowrulev2 = center,$scratchpad
-
-       #windowrulev2 = float,class:^(Element)$
-       #windowrulev2 = size 85% 90%,class:^(Element)$
-       #windowrulev2 = center,class:^(Element)$
-
-       #windowrulev2 = float,class:^(lollypop)$
-       #windowrulev2 = size 85% 90%,class:^(lollypop)$
-       #windowrulev2 = center,class:^(lollypop)$
+       bind=SUPER,Z,exec,pypr toggle term
+       bind=SUPER,F,exec,pypr toggle ranger
+       bind=SUPER,N,exec,pypr toggle bitwarden
+       bind=SUPER,M,exec,pypr toggle music
+       bind=SUPER,S,exec,pypr toggle btm
+       bind=SUPER,V,exec,pypr toggle pavucontrol
 
        #$savetodisk = title:^(Save to Disk)$
        #windowrulev2 = float,$savetodisk
@@ -197,26 +180,15 @@
        #windowrulev2 = workspace special silent,$pavucontrol
        windowrulev2 = opacity 0.80,$pavucontrol
 
-       #$miniframe = title:\*Minibuf.*
-       #windowrulev2 = float,$miniframe
-       #windowrulev2 = size 64% 50%,$miniframe
-       #windowrulev2 = move 18% 25%,$miniframe
-       #windowrulev2 = animation popin 1 20,$miniframe
-
-       #windowrulev2 = float,class:^(pokefinder)$
-
-       #windowrulev2 = opacity 0.80,title:ORUI
+       $Bitwarden = class:^(Bitwarden)$
+       windowrulev2 = float,$Bitwarden
+       #windowrulev2 = opacity 0.80,$Bitwarden
+       #windowrulev2 = center,$Bitwarden
 
        #windowrulev2 = opacity 1.0,class:^(org.qutebrowser.qutebrowser),fullscreen:1
-       #windowrulev2 = opacity 0.85,class:^(Element)$
-       #windowrulev2 = opacity 0.85,class:^(lollypop)$
        windowrulev2 = opacity 1.0,class:^(Brave-browser),fullscreen:1
        windowrulev2 = opacity 1.0,class:^(librewolf),fullscreen:1
        windowrulev2 = opacity 1.0,class:^(firefox),fullscreen:1
-       #windowrulev2 = opacity 0.85,title:^(My Local Dashboard Awesome Homepage - qutebrowser)$
-       #windowrulev2 = opacity 0.85,title:\[.*\] - My Local Dashboard Awesome Homepage
-       #windowrulev2 = opacity 0.85,class:^(org.keepassxc.KeePassXC)$
-       windowrulev2 = opacity 0.85,class:^(org.gnome.Nautilus)$
        windowrulev2 = opacity 0.85,class:^(org.gnome.Nautilus)$
 
        layerrule = blur,waybar
@@ -313,6 +285,7 @@
     hyprpaper
     hyprlock
     hypridle
+    pyprland
     fnott
     playerctl
     keepmenu

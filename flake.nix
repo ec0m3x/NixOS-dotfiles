@@ -39,7 +39,7 @@
         name = "Sebastian";
         email = "skoch@sks-concept.de";
         browser = "firefox";
-        theme = "catppuccin-mocha";
+        theme = "io";
         wallpaper ="hyprland.jpg"; # pick one of themes/wallpapers
         font = "Intel One Mono";
         fontPkg = pkgs.intel-one-mono;
@@ -52,7 +52,6 @@
         inherit system;
         modules = [ 
           ./hosts/desktop/configuration.nix
-          inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
           inherit inputs;
@@ -67,7 +66,6 @@
         inherit pkgs;
         modules = [ 
           ./hosts/desktop/home.nix
-          inputs.stylix.homeManagerModules.stylix
         ];
         extraSpecialArgs = {
           inherit inputs;

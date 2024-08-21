@@ -24,5 +24,6 @@
     btop
     htop
     vim neovim
+    ranger
   ];
 }

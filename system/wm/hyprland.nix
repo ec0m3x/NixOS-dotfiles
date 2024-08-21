@@ -33,6 +33,9 @@
   };
   services.xserver.excludePackages = [ pkgs.xterm ];
 
+  environment.systemPackages = with pkgs; [
+    hyprnome
+  ];
   
   xdg.portal = {
     enable = true;

@@ -1,18 +1,27 @@
 { config, pkgs, lib, inputs, userSettings, ... }:
 
+let
+  #themePath = "${pkgs.base16-schemes}/share/themes/"+userSettings.theme+".yaml";
+  themePath = "../../../themes/"+userSettings.theme+"/"+userSettings.theme+".yaml";
+  themePolarity = lib.removeSuffix "\n" (builtins.readFile (./. + "../../../themes"+("/"+userSettings.theme)+"/polarity.txt"));
+  backgroundUrl = builtins.readFile (./. + "../../../themes"+("/"+userSettings.theme)+"/backgroundurl.txt");
+  backgroundSha256 = builtins.readFile (./. + "../../../themes/"+("/"+userSettings.theme)+"/backgroundsha256.txt");
+in
 
-  let
-    themePath = "${pkgs.base16-schemes}/share/themes/"+userSettings.theme+".yaml";
-    themePolarity = "dark";
-    wallpaper = userSettings.wallpaper;
-  in
+{
+  imports = [ inputs.stylix.homeManagerModules.stylix ];
 
-{  
+  home.file.".currenttheme".text = userSettings.theme;
   stylix = {
     enable = true;
     autoEnable = false;
-    base16Scheme = themePath;
-    image = ../../theme/wallpapers/${wallpaper};
+    base16Scheme = ./. + themePath;
+
+    image = pkgs.fetchurl {
+      url = backgroundUrl;
+      sha256 = backgroundSha256;
+    };
+
     polarity = themePolarity;
     cursor = {
       package = pkgs.bibata-cursors;

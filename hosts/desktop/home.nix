@@ -20,45 +20,48 @@
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
-  home.packages = [
+  home.packages = (with pkgs; [
     # Core
-    pkgs.zsh
-    pkgs.git
+    zsh
+    git
 
     # Office
-    pkgs.libreoffice-fresh
+    libreoffice-fresh
     
     # Gnome stuff
-    pkgs.gnome.adwaita-icon-theme
-    pkgs.gnome.nautilus
-    pkgs.gnome.seahorse
-    pkgs.gnome.gnome-maps
-    pkgs.gnome.cheese
-    pkgs.gnome.geary
+    gnome.adwaita-icon-theme
+    gnome.nautilus
+    gnome.seahorse
+    gnome.gnome-maps
+    gnome.cheese
+    gnome.geary
 
     # Media
-    pkgs.vlc
-    pkgs.gimp
-    pkgs.mpv
-    pkgs.yt-dlp
-    pkgs.obs-studio
-    pkgs.ffmpeg
-    pkgs.movit
-    pkgs.mediainfo
-    pkgs.libmediainfo
-    pkgs.spotify
+    vlc
+    gimp
+    mpv
+    yt-dlp
+    obs-studio
+    ffmpeg
+    movit
+    mediainfo
+    libmediainfo
+    spotify
+    musikcube
 
     # Communication
-    #pkgs.webcord
-    #pkgs.discord
-    pkgs.vesktop
-    pkgs-unstable.webex
+    vesktop
 
+    # Password management
+    bitwarden-desktop
+    
     # Fonts
-    pkgs.nerdfonts
-    pkgs.font-awesome
-  ];
-
+    nerdfonts
+    font-awesome
+  ]) ++ (with pkgs-unstable; [
+    
+    webex
+  ]);
 
   home.sessionVariables = {
     EDITOR = "vscode";
