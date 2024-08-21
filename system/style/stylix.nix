@@ -1,7 +1,6 @@
 { lib, pkgs, inputs, userSettings, ... }:
 
 let
-  #themePath = "${pkgs.base16-schemes}/share/themes/"+userSettings.theme+".yaml";
   themePath = "../../../themes/"+userSettings.theme+"/"+userSettings.theme+".yaml";
   themePolarity = lib.removeSuffix "\n" (builtins.readFile (./. + "../../../themes"+("/"+userSettings.theme)+"/polarity.txt"));
   backgroundUrl = builtins.readFile (./. + "../../../themes"+("/"+userSettings.theme)+"/backgroundurl.txt");

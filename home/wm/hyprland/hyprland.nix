@@ -1,4 +1,4 @@
-{ config, lib, pkgs, userSettings, ... }:
+{ inputs, config, lib, pkgs, userSettings, ... }:
 
 {
   imports = [
@@ -49,13 +49,14 @@
 
       general {
         layout = master
-        border_size = 1
-        resize_on_border = false
-        gaps_in = 5
-        gaps_out = 5
-        # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-        col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-        col.inactive_border = rgba(595959aa)
+        border_size = 2
+        col.active_border = 0xff'' + config.lib.stylix.colors.base08 + " " + ''0xff'' + config.lib.stylix.colors.base09 + " " + ''0xff'' + config.lib.stylix.colors.base0A + " " + ''0xff'' + config.lib.stylix.colors.base0B + " " + ''0xff'' + config.lib.stylix.colors.base0C + " " + ''0xff'' + config.lib.stylix.colors.base0D + " " + ''0xff'' + config.lib.stylix.colors.base0E + " " + ''0xff'' + config.lib.stylix.colors.base0F + " " + ''270deg
+
+        col.inactive_border = 0xaa'' + config.lib.stylix.colors.base02 + ''
+
+            resize_on_border = false
+            gaps_in = 7
+            gaps_out = 7
        }
 
       cursor {
@@ -76,7 +77,8 @@
        bind=CTRLALT,Delete,exec,hyprctl kill
        bind=SUPERSHIFT,K,exec,hyprctl kill
 
-       bind=SUPER,RETURN,exec,alacritty
+       bind=SUPER,RETURN,exec,'' + userSettings.term + ''
+
        bind=SUPER,A,exec,wofi --show drun
        bind=SUPER,Q,killactive
        bind=SUPERSHIFT,Q,exit
@@ -85,16 +87,14 @@
        bind=SUPER,T,togglefloating
 
        ## App launchers
+       bind=SUPER,B,exec,'' + userSettings.browser + ''
 
-       bind=SUPER,B,exec,firefox
        bind=SUPER,E,exec,nautilus
-
        #bind=SHIFT,P,exec,grim -g "$(slurp -o)"
        bind=SUPER,P,exec,grim
        bind=CTRL,P,exec,grim -g "$(slurp)" - | wl-copy
        bind=SHIFTCTRL,P,exec,grim -g "$(slurp -o)" - | wl-copy
        bind=SUPERCTRL,P,exec,grim - | wl-copy
-
 
        bind=SUPERCTRL,S,exec,systemctl suspend
        bind=SUPERCTRL,L,exec,loginctl lock-session
@@ -245,8 +245,10 @@
        misc {
          disable_hyprland_logo = true
          mouse_move_enables_dpms = true
-         allow_session_lock_restore = true
+         font_family = '' + userSettings.font + ''
+
        }
+
        decoration {
          rounding = 8
          blur {
@@ -526,25 +528,25 @@
       }
 
       window#waybar {
-          background-color: transparent;
+          background-color: rgba('' + config.lib.stylix.colors.base00-rgb-r + "," + config.lib.stylix.colors.base00-rgb-g + "," + config.lib.stylix.colors.base00-rgb-b + "," + ''0.55);
           border-radius: 8px;
-          color: white;
+          color: #'' + config.lib.stylix.colors.base07 + '';
           transition-property: background-color;
           transition-duration: .2s;
       }
 
       tooltip {
-        color: white;
-        background-color: black;
+        color: #'' + config.lib.stylix.colors.base07 + '';
+        background-color: rgba('' + config.lib.stylix.colors.base00-rgb-r + "," + config.lib.stylix.colors.base00-rgb-g + "," + config.lib.stylix.colors.base00-rgb-b + "," + ''0.9);
         border-style: solid;
         border-width: 3px;
         border-radius: 8px;
-        border-color: white;
+        border-color: #'' + config.lib.stylix.colors.base08 + '';
       }
 
       tooltip * {
-        color: white;
-        background-color: transparent;
+        color: #'' + config.lib.stylix.colors.base07 + '';
+        background-color: rgba('' + config.lib.stylix.colors.base00-rgb-r + "," + config.lib.stylix.colors.base00-rgb-g + "," + config.lib.stylix.colors.base00-rgb-b + "," + ''0.0);
       }
 
       window > box {
@@ -561,7 +563,7 @@
       }
 
       #custom-hyprprofile {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0D + '';
       }
 
       /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
@@ -572,27 +574,27 @@
       #workspaces button {
           padding: 0px 6px;
           background-color: transparent;
-          color: white;
+          color: #'' + config.lib.stylix.colors.base04 + '';
       }
 
       #workspaces button:hover {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base07 + '';
       }
 
       #workspaces button.active {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base08 + '';
       }
 
       #workspaces button.focused {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0A + '';
       }
 
       #workspaces button.visible {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base05 + '';
       }
 
       #workspaces button.urgent {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base09 + '';
       }
 
       #battery,
@@ -608,32 +610,36 @@
       #tray,
       #mode,
       #idle_inhibitor,
+      #scratchpad,
+      #custom-hyprprofileicon,
       #custom-quit,
       #custom-lock,
       #custom-reboot,
       #custom-power,
       #mpd {
           padding: 0 3px;
-          color: white;
+          color: #'' + config.lib.stylix.colors.base07 + '';
           border: none;
           border-radius: 8px;
       }
 
+      #custom-hyprprofileicon,
       #custom-quit,
       #custom-lock,
       #custom-reboot,
       #custom-power,
       #idle_inhibitor {
           background-color: transparent;
-          color: white;
+          color: #'' + config.lib.stylix.colors.base04 + '';
       }
 
+      #custom-hyprprofileicon:hover,
       #custom-quit:hover,
       #custom-lock:hover,
       #custom-reboot:hover,
       #custom-power:hover,
       #idle_inhibitor:hover {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base07 + '';
       }
 
       #clock, #tray, #idle_inhibitor {
@@ -656,27 +662,27 @@
       }
 
       #clock {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0D + '';
       }
 
       #battery {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0B + '';
       }
 
       #battery.charging, #battery.plugged {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0C + '';
       }
 
       @keyframes blink {
           to {
-              background-color: transparent;
-              color: white;
+              background-color: #'' + config.lib.stylix.colors.base07 + '';
+              color: #'' + config.lib.stylix.colors.base00 + '';
           }
       }
 
       #battery.critical:not(.charging) {
-          background-color: transparent;
-          color: white;
+          background-color: #'' + config.lib.stylix.colors.base08 + '';
+          color: #'' + config.lib.stylix.colors.base07 + '';
           animation-name: blink;
           animation-duration: 0.5s;
           animation-timing-function: linear;
@@ -685,43 +691,39 @@
       }
 
       label:focus {
-          background-color: transparent;
+          background-color: #'' + config.lib.stylix.colors.base00 + '';
       }
 
       #cpu {
-          color: white;
-          margin: 0 6px;
+          color: #'' + config.lib.stylix.colors.base0D + '';
       }
 
       #memory {
-          color: white;
-
+          color: #'' + config.lib.stylix.colors.base0E + '';
       }
 
       #disk {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0F + '';
       }
 
       #backlight {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0A + '';
       }
 
       label.numlock {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base04 + '';
       }
 
       label.numlock.locked {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0F + '';
       }
 
       #pulseaudio {
-          color: white;
-
+          color: #'' + config.lib.stylix.colors.base0C + '';
       }
 
       #pulseaudio.muted {
-          color: white;
-
+          color: #'' + config.lib.stylix.colors.base04 + '';
       }
 
       #tray > .passive {
@@ -733,11 +735,11 @@
       }
 
       #idle_inhibitor {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base04 + '';
       }
 
       #idle_inhibitor.activated {
-          color: white;
+          color: #'' + config.lib.stylix.colors.base0F + '';
       }
       '';
   };

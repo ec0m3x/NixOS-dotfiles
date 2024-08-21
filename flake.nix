@@ -35,14 +35,14 @@
 
       # --- User Settings --- #
       userSettings = rec {
-        username = "ecomex";
-        name = "Sebastian";
-        email = "skoch@sks-concept.de";
-        browser = "firefox";
-        theme = "io";
-        wallpaper ="hyprland.jpg"; # pick one of themes/wallpapers
-        font = "Intel One Mono";
-        fontPkg = pkgs.intel-one-mono;
+        username = "ecomex"; # Your username;
+        name = "Sebastian"; # Your name;
+        email = "skoch@sks-concept.de"; # Your email;
+        browser = "firefox"; # Default browser command;
+        term = "alacritty"; # Default terminal command;
+        theme = "catppuccin-mocha"; # Default theme;
+        font = "Intel One Mono"; # Default font;
+        fontPkg = pkgs.intel-one-mono; # Default font package;
       };
 
   in {

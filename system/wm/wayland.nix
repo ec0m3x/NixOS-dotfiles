@@ -10,8 +10,15 @@
   environment.systemPackages = with pkgs;
     [
       wayland
-      sddm-chili-theme
-      xwaylandvideobridge
+      (sddm-chili-theme.override {
+        themeConfig = {
+          background = config.stylix.image;
+          ScreenWidth = 3440;
+          ScreenHeight = 1440;
+          blur = true;
+          recursiveBlurLoops = 3;
+          recursiveBlurRadius = 5;
+        };})
     ];
 
   # Configure xwayland
@@ -25,16 +32,12 @@
   
   # Configure SDDM
   services.displayManager = {
-    #autoLogin = {
-    #  enable = true;
-    #  user = "ecomex";
-    #};
     sddm = {
       enable = true;
       package = pkgs.sddm;
       theme = "chili";
-      wayland.enable = false;
-      enableHidpi = false;
+      wayland.enable = true;
+      enableHidpi = true;
     };
   };
 }

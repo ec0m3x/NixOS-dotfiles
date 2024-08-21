@@ -4,6 +4,8 @@ let
   myAliases = {
     ll = "ls -la";
     ".." =  "cd ..";
+    full-rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/ && home-manager switch --flake ~/dotfiles/";
+    full-clean = "sudo nix-collect-garbage --delete-old && nix-collect-garbage --delete-old";
   };
 in
 
