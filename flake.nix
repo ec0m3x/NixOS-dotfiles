@@ -40,7 +40,7 @@
         email = "skoch@sks-concept.de"; # Your email;
         browser = "firefox"; # Default browser command;
         term = "alacritty"; # Default terminal command;
-        theme = "catppuccin-mocha"; # Default theme;
+        theme = "horizon-dark"; # Default theme;
         font = "Intel One Mono"; # Default font;
         fontPkg = pkgs.intel-one-mono; # Default font package;
       };

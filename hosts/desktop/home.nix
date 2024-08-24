@@ -100,5 +100,10 @@
 
   news.display = "silent";
   # Let Home Manager install and manage itself.
+
+  nix.gc.automatic = true;
+  nix.gc.frequency = "weekly";
+  nix.gc.options = "--delete-older-than 7d";
+
   programs.home-manager.enable = true;
 }
