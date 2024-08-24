@@ -53,12 +53,9 @@ in
     }; 
   };
 
-  stylix.targets.alacritty.enable = false;
-  programs.alacritty.settings = {
+  stylix.targets.alacritty.enable = true;
+/*   programs.alacritty.settings = {
     colors = {
-      # TODO revisit these color mappings
-      # these are just the default provided from stylix
-      # but declared directly due to alacritty v3.0 breakage
       primary.background = "#"+config.lib.stylix.colors.base00;
       primary.foreground = "#"+config.lib.stylix.colors.base07;
       cursor.text = "#"+config.lib.stylix.colors.base00;
@@ -82,7 +79,7 @@ in
     };
     font.size = config.stylix.fonts.sizes.terminal;
     font.normal.family = userSettings.font;
-  };
+  }; */
   
   stylix.targets.kde.enable = true;
   stylix.targets.kitty.enable = true;

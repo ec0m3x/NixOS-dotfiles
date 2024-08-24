@@ -19,6 +19,7 @@
     mangohud
     protonup
     gamemode
+    lutris
   ];
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS =

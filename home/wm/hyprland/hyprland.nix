@@ -167,6 +167,7 @@
        bind=SUPER,M,exec,pypr toggle music
        bind=SUPER,S,exec,pypr toggle btm
        bind=SUPER,V,exec,pypr toggle pavucontrol
+       bind=SUPER,C,exec,pypr toggle cava
 
        #$savetodisk = title:^(Save to Disk)$
        #windowrulev2 = float,$savetodisk
@@ -319,10 +320,10 @@
         layer = "top";
         position = "top";
         height = 35;
-        margin = "7 7 3 7";
-        spacing = 2;
+        margin = "7 7 7 7";
+        spacing = 5;
 
-        modules-left = [ "group/power" "group/cpu" "group/memory" "group/pulseaudio" ];
+        modules-left = [ "group/power" "cpu" "memory" "pulseaudio" ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [ "tray" "group/time" "keyboard-state" "idle_inhibitor" ];
 
@@ -424,14 +425,14 @@
           "modules" = [ "clock#time" "clock#date" ];
         };
 
-        cpu = { "format" = "󰍛"; };
+        cpu = { "format" = "󰍛 {usage}%"; };
         "cpu#text" = { "format" = "{usage}%"; };
         "group/cpu" = {
           "orientation" = "horizontal";
           "modules" = [ "cpu" "cpu#text" ];
         };
 
-        memory = { "format" = ""; };
+        memory = { "format" = " {}%"; };
         "memory#text" = { "format" = "{}%"; };
         "group/memory" = {
           "orientation" = "horizontal";
@@ -486,11 +487,11 @@
         };
         pulseaudio = {
           "scroll-step" = 1;
-          "format" = "{icon}";
-          "format-bluetooth" = "{icon}";
+          "format" = "{icon} {volume}%";
+          "format-bluetooth" = "{icon} {volume}%";
           "format-bluetooth-muted" = "󰸈";
           "format-muted" = "󰸈";
-          "format-source" = "";
+          "format-source" = " {volume}%";
           "format-source-muted" = "";
           "format-icons" = {
             "headphone" = "";
@@ -501,21 +502,7 @@
             "car" = "";
             "default" = [ "" "" "" ];
           };
-          "on-click" = "pavucontrol && hyprctl dispatch bringactivetotop";
-        };
-        "pulseaudio#text" = {
-          "scroll-step" = 1;
-          "format" = "{volume}%";
-          "format-bluetooth" = "{volume}%";
-          "format-bluetooth-muted" = "";
-          "format-muted" = "";
-          "format-source" = "{volume}%";
-          "format-source-muted" = "";
-          "on-click" = "pavucontrol && hyprctl dispatch bringactivetotop";
-        };
-        "group/pulseaudio" = {
-          "orientation" = "horizontal";
-          "modules" = [ "pulseaudio" "pulseaudio#text" ];
+          "on-click" = "pypr toggle pavucontrol";
         };
       };
     };

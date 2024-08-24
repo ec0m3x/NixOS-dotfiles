@@ -10,6 +10,7 @@
       ../../home/app/git/git.nix
       ../../home/app/development/vscode.nix
       ../../home/app/cloud/nextcloud-client.nix
+      ../../home/app/games/games.nix
       (./. + "../../../home/app/browser"+("/"+userSettings.browser)+".nix")
     ];
 

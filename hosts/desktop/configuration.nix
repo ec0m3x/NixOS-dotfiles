@@ -18,7 +18,7 @@
       ../../system/hardware/power.nix
       ../../system/wm/hyprland.nix
       ../../system/app/virtualisation.nix
-      ../../system/app/steam.nix
+      ../../system/app/gaming.nix
       ../../system/app/flatpak.nix
       ../../system/security/gpg.nix
       ../../system/security/automount.nix
@@ -75,7 +75,14 @@
     git
     nfs-utils
     home-manager
+    nh
+    nix-output-monitor
+    nvd
   ];
+
+  environment.sessionVariables = {
+    FLAKE = "/home/ecomex/dotfiles";
+  };
 
   # I use zsh
   environment.shells = with pkgs; [ zsh ];

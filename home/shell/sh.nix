@@ -2,7 +2,8 @@
 
 let
   myAliases = {
-    ll = "ls -la";
+    ll = "eza --icons=auto -la";
+    ls = "eza --icons=auto";
     ".." =  "cd ..";
     full-rebuild = "sudo nixos-rebuild switch --flake ~/dotfiles/ && home-manager switch --flake ~/dotfiles/";
     full-clean = "sudo nix-collect-garbage --delete-old && nix-collect-garbage --delete-old";
