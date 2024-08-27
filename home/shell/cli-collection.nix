@@ -12,7 +12,7 @@
     timer
     brightnessctl
     gnugrep
-    bat eza fd bottom ripgrep
+    bat eza fd bottom ripgrep sl
     tree
     rsync
     unzip

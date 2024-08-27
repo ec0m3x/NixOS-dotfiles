@@ -9,19 +9,19 @@
 
   boot.supportedFilesystems = [ "cifs" ];
 
-/*   systemd.mounts = [{
+  systemd.mounts = [{
     description = "Mount for SMB Share";
-    what = "//192.168.0.131/nas/";
-    where = "/home/ecomex/NAS";
+    what = "//192.168.0.31/homestorage/";
+    where = "/home/ecomex/HomeStorage";
     type = "cifs";
     options = "credentials=/home/ecomex/.smbcredentials/ecomex-smb,rw,uid=1000,gid=1000";
     }];
 
   systemd.automounts = [{
     description = "Automount for SMB Share";
-    where = "/home/ecomex/NAS";
+    where = "/home/ecomex/HomeStorage";
     wantedBy = [ "multi-user.target" ];
-  }]; */
+  }];
   
   fileSystems."/home/ecomex/Devices/SSD1-250GB" = {
     device = "/dev/disk/by-uuid/5ee2439c-1e49-4604-8181-57cd84353879";
@@ -42,7 +42,7 @@
   };
 
   fileSystems."/home/ecomex/NFS" = {
-    device = "192.168.0.131:/mnt/user/NAS";
+    device = "192.168.0.31:/mnt/TANK/Docker-NFS";
     fsType = "nfs";
     options = [ "rw" "x-systemd.automount" "x-systemd.requires=network-online.target" "x-systemd.device-timeout=10s" ];
   };

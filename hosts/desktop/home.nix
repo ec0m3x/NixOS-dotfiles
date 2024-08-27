@@ -27,15 +27,22 @@
     git
 
     # Office
-    libreoffice-fresh
+    #libreoffice-fresh
+    onlyoffice-bin
+    morgen
+    qpdfview
+    zathura
+    evince
+
+
     
     # Gnome stuff
     gnome.adwaita-icon-theme
     gnome.nautilus
     gnome.seahorse
-    gnome.gnome-maps
     gnome.cheese
     gnome.geary
+    
 
     # Media
     vlc
