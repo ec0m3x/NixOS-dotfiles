@@ -9,6 +9,7 @@
       ../../home/style/stylix.nix
       ../../home/app/git/git.nix
       ../../home/app/development/vscode.nix
+      ../../home/app/flatpak/flatpak.nix
       ../../home/app/cloud/nextcloud-client.nix
       ../../home/app/games/games.nix
       (./. + "../../../home/app/browser"+("/"+userSettings.browser)+".nix")
@@ -33,8 +34,9 @@
     qpdfview
     zathura
     evince
-
-
+    zotero
+    obsidian
+    thunderbird
     
     # Gnome stuff
     gnome.adwaita-icon-theme
@@ -56,6 +58,7 @@
     libmediainfo
     spotify
     musikcube
+    
 
     # Communication
     vesktop
@@ -68,7 +71,8 @@
     font-awesome
   ]) ++ (with pkgs-unstable; [
     
-    webex
+    amdgpu_top
+    davinci-resolve
   ]);
 
   home.sessionVariables = {
